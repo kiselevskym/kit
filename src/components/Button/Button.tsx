@@ -1,12 +1,8 @@
 import React from "react";
 import s from "./button.module.scss";
+import ButtonTypes from "./ButtonTypes";
 
-interface Props {
-  label: string;
-  onClick?: () => void;
-}
-
-const Button: React.FC<Props> = ({ label, onClick }) => {
+const Button: React.FC<ButtonTypes> = ({ label, onClick }) => {
   return (
     <button className={s.root} onClick={onClick}>
       {label}

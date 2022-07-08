@@ -1,8 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
+import thunk from "redux-thunk";
 import currencyReducer from "./reducers/currencySlice/currencySlice";
 
 export const store = configureStore({
   reducer: { currencyReducer },
+  middleware: [thunk],
 });
 
 // Infer the `RootState` and `AppDispatch` types from the store itself

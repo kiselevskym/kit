@@ -1,11 +1,10 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import {
   getLocalStorage,
   setLocalStorage,
 } from "../../../helper/localStorageHelper";
 import localStorageKeys from "../../../constants/localStorageKeys";
-import { getCurrencies } from "../../../api/currenciesAPI";
 import CurrenciesData from "../../../interfaces/CurrenciesData";
 
 export interface CurrencyState {
@@ -21,35 +20,33 @@ const initialState: CurrencyState = {
   currenciesList: [],
 };
 
-const fetchCurrenciesList = createAsyncThunk(
-  "currency/fetchCurrenciesList",
-  async (): Promise<CurrenciesData> => {
-    const result = await getCurrencies({});
-    return result;
-  }
-);
-
 export const currencySlice = createSlice({
   name: "currency",
   initialState,
   reducers: {
-    setCurrentCurrency: (state, action: PayloadAction<string>) => {
+    setCurrentCurrency: (
+      state: CurrencyState,
+      action: PayloadAction<string>
+    ) => {
       const newCurrent = action.payload;
       state.currentCurrency = newCurrent;
       setLocalStorage(localStorageKeys.currentCurrency, newCurrent);
     },
-  },
-  extraReducers: (builer) => {
-    builer.addCase(
-      fetchCurrenciesList.fulfilled,
-      (state, action: PayloadAction<CurrenciesData>) => {
-        state.currenciesList = Object.keys(action.payload.rates);
-      }
-    );
+    setCurrenciesListSuccess: (
+      state: CurrencyState,
+      action: PayloadAction<CurrenciesData>
+    ) => {
+      const list = Object.keys(action.payload.rates);
+      state.currenciesList = list;
+    },
+    setCurrenciesListFailed: () => {},
   },
 });
 
-export const { setCurrentCurrency } = currencySlice.actions;
-export { fetchCurrenciesList };
+export const {
+  setCurrentCurrency,
+  setCurrenciesListSuccess,
+  setCurrenciesListFailed,
+} = currencySlice.actions;
 
 export default currencySlice.reducer;

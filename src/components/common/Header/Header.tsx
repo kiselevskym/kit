@@ -5,9 +5,9 @@ import paths from "../../../core/constants/paths";
 import {
   selectCurrencies,
   selectCurrentCurrency,
-} from "../../../core/redux/reducers/currencySlice/currenctSelectors";
-import { setCurrentCurrency } from "../../../core/redux/reducers/currencySlice/currencySlice";
-import { AppDispatch } from "../../../core/redux/store";
+} from "../../../core/store/reducers/currencySlice/currencySelectors";
+import { setCurrentCurrency } from "../../../core/store/reducers/currencySlice/currencySlice";
+import { AppDispatch } from "../../../core/store/store";
 import Select from "../../Select/Select";
 import Container from "../Container";
 import s from "./header.module.scss";

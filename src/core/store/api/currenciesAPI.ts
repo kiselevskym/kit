@@ -1,6 +1,6 @@
 import axios, { AxiosResponse } from "axios";
-import ConvertCurrencyData from "../interfaces/ConvertCurrencyData";
-import CurrenciesData from "../interfaces/CurrenciesData";
+import ConvertCurrencyData from "../../interfaces/ConvertCurrencyData";
+import CurrenciesData from "../../interfaces/CurrenciesData";
 
 const API: string = "https://api.exchangerate.host";
 
@@ -34,4 +34,4 @@ const getCurrencies = async ({
   return result.data;
 };
 
-export { convertCurrency, getCurrencies };
+export const currenciesAPI = { convertCurrency, getCurrencies };

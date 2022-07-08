@@ -1,17 +1,17 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import CurrencyItem from "../components/items/CurrencyItem/CurrencyItem";
-import Layout from "../components/Layout/Layout";
+import Layout from "../components/common/Layout";
+import CurrencyItem from "../components/items/CurrencyItem";
 import Query from "../components/Query";
-import { getCurrencies } from "../core/api/currenciesAPI";
 import useQuery from "../core/hooks/useQuery";
 import CurrenciesData from "../core/interfaces/CurrenciesData";
-import { selectCurrentCurrency } from "../core/redux/reducers/currencySlice/currenctSelectors";
+import { currenciesAPI } from "../core/store/api/currenciesAPI";
+import { selectCurrentCurrency } from "../core/store/reducers/currencySlice/currencySelectors";
 
 const CurrenciesPage: React.FC = () => {
   const currentCurrency = useSelector(selectCurrentCurrency);
   const { data, isLoaded, isError } = useQuery<CurrenciesData>({
-    fetcher: () => getCurrencies({ base: currentCurrency }),
+    fetcher: () => currenciesAPI.getCurrencies({ base: currentCurrency }),
     deps: [currentCurrency],
   });
 

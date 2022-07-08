@@ -1,14 +1,13 @@
 import classNames from "classnames";
 import React from "react";
 import s from "./select.module.scss";
+import SelectTypes from "./SelectTypes";
 
-interface Props {
-  selectedLabel: string;
-  options: string[];
-  onChange: (value: string) => void;
-}
-
-const Select: React.FC<Props> = ({ options, selectedLabel, onChange }) => {
+const Select: React.FC<SelectTypes> = ({
+  options,
+  selectedLabel,
+  onChange,
+}) => {
   const [showList, setShowList] = React.useState(false);
   const [activeItem, setActiveItem] = React.useState(selectedLabel);
 

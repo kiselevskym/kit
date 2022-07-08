@@ -1,11 +1,10 @@
 import React from "react";
-import s from "./home.module.scss";
-import Button from "../../components/Button/Button";
-import Input from "../../components/Input/Input";
-import Layout from "../../components/Layout/Layout";
-import Loader from "../../components/Loader/Loader";
-import { convertCurrency } from "../../core/api/currenciesAPI";
+import Button from "../../components/Button";
+import Layout from "../../components/common/Layout";
+import Input from "../../components/Input";
+import Loader from "../../components/Loader";
 import ConvertCurrencyData from "../../core/interfaces/ConvertCurrencyData";
+import s from "./home.module.scss";
 
 const Home: React.FC = () => {
   const [input, setInput] = React.useState<string>("");
@@ -52,3 +51,10 @@ const Home: React.FC = () => {
 };
 
 export default Home;
+function convertCurrency(arg0: {
+  from: string;
+  to: string;
+  amount: string;
+}): ConvertCurrencyData | PromiseLike<ConvertCurrencyData> {
+  throw new Error("Function not implemented.");
+}

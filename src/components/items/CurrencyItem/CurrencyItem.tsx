@@ -1,12 +1,8 @@
 import React from "react";
 import s from "./currency.module.scss";
+import CurrencyItemTypes from "./CurrencyItemTypes";
 
-interface Props {
-  name: string;
-  value: number;
-}
-
-const CurrencyItem: React.FC<Props> = ({ name, value }) => {
+const CurrencyItem: React.FC<CurrencyItemTypes> = ({ name, value }) => {
   return (
     <div className={s.root}>
       <span>{name}</span>

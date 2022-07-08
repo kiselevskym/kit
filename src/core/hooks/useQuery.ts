@@ -12,10 +12,10 @@ interface UseQueryParams<Data> {
   deps?: unknown[];
 }
 
-export default function useQuery<Data>({
+const useQuery = <Data>({
   fetcher,
   deps,
-}: UseQueryParams<Data>): UseQueryReturnType<Data> {
+}: UseQueryParams<Data>): UseQueryReturnType<Data> => {
   const [data, setData] = React.useState<Data | null>(null);
   const [error, setError] = React.useState<boolean>(false);
   const [isLoaded, setIsLoaded] = React.useState(false);
@@ -33,4 +33,6 @@ export default function useQuery<Data>({
   }, deps || []);
 
   return { data, isLoaded, isError: error, refreshData: loadData };
-}
+};
+
+export default useQuery;
